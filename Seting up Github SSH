@@ -1,0 +1,37 @@
+# This is a tutorial for setting up GitHub with SSH
+# For Linux users
+
+1. Check fot Existing Keys:
+	$ ls -al ~/.ssh
+
+- If you see files like id_rsa.pub, id_ed25519, or id_ecdsa.pub, you already have a key.
+
+
+2. Generate a new SSH key:
+	$ ssh-keygen -t ed2519 -C "your-email@x.com"
+
+- you have to add your github email.
+- you can press Enter to save it in the default location.
+- you can add a password or leave it blank.
+
+
+3. Add your key to the ssh agent:
+- This ensures your computer remember the key so you don't have to re-enter your passphrase constantly.
+	$ eval "$(ssh-agent -s)"	--> To start the agent
+	$ ssh-add ~/.ssh/id_ed25519	--> Add your key
+
+
+4. Add public key to Github:
+
+	$ cat ~/.ssh/id_ed25519.pub	--> Copy the output of this.
+
+- Go to GitHub Settings --> SSh and GPG keys --> New SSH key --> Give it a name --> Paste 
+
+
+5. Test the Connection:
+	$ ssh -T git@github.com
+
+- You will see a warning about the authenticity of the host. --> Type yes
+
+
+	
